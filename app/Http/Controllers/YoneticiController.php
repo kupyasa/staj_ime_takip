@@ -399,4 +399,41 @@ class YoneticiController extends Controller
 
         return redirect()->route('yonetici.kullanicilarget')->withSuccess("Kullanıcılar eklendi.");
     }
+
+    public function imeSecimGet(Request $request)
+    {
+        $ime_kayitlilar = DB::table('imes')->whereIn('onay_durumu', ['Öğrenci Başvurusu Gerekmektedir', "Komisyon Onayı Gerekmektedir"])->orWhere([["onay_durumu", "=", "Kabul Edildi"], ["not", "=", "Başarılı"]])->select('ogrenci_id')->get();
+        //dd($ime_kayitlilar);
+        $ime_kayitlilar_id = collect();
+        foreach ($ime_kayitlilar as $ime_kayitli) {
+            $ime_kayitlilar_id->add($ime_kayitli->ogrenci_id);
+        }
+        $search = $request->input('search');
+        $ime_adaylari = DB::table('users')->where('rol', '=', 'ogrenci')->whereNotIn('id', $ime_kayitlilar_id)
+            ->when($search, function ($query, $search) use ($ime_kayitlilar_id) {
+                $query->where([['ogrenci_sicil_no', 'LIKE', "%" . $search . "%"], ['rol', '=', 'ogrenci']])->whereNotIn('id', $ime_kayitlilar_id)
+                    ->orWhere([['bolum', 'LIKE', "%" . $search . "%"], ['rol', '=', 'ogrenci']])->whereNotIn('id', $ime_kayitlilar_id)
+                    ->orWhere([['fakulte', 'LIKE', "%" . $search . "%"], ['rol', '=', 'ogrenci']])->whereNotIn('id', $ime_kayitlilar_id)
+                    ->orWhere([['name', 'LIKE', "%" . $search . "%"], ['rol', '=', 'ogrenci']])->whereNotIn('id', $ime_kayitlilar_id)
+                    ->orWhere([['surname', 'LIKE', "%" . $search . "%"], ['rol', '=', 'ogrenci']])->whereNotIn('id', $ime_kayitlilar_id);
+            })->paginate(5);
+        //dd($ime_adaylari);
+        return view('yonetici.imesecim', compact('ime_adaylari'));
+    }
+
+    public function imeSecimPost(Request $request)
+    {
+
+        if ($request->has('ogrenci_numaralari')) {
+            foreach ($request->ogrenci_numaralari as $key => $value) {
+                DB::table('imes')->insert([
+                    "ogrenci_id" => $value, "yil_donem" => $request->yil . " " . $request->donem, "onay_durumu" => "Öğrenci Başvurusu Gerekmektedir", "created_at" => Carbon::now("Europe/Istanbul"),
+                    "updated_at" => Carbon::now("Europe/Istanbul"),
+                ]);
+            }
+            return redirect()->route('yonetici.imesget')->withSuccess("Öğrenci İME listesine eklendi.");
+        } else {
+            return redirect()->route('yonetici.imesget')->withErrors("Öğrenci İME listesine eklenmedi.");
+        }
+    }
 }
