@@ -7,6 +7,127 @@
     @if ($ime != null)
         <div class="card">
             <div class="card-body">
+                <form action="{{ route('imebilgileriindirpost') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_ad_soyad" name="ogrenci_ad_soyad"
+                        value="{{ $ime->name . ' ' . $ime->surname }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_sicil_no" name="ogrenci_sicil_no"
+                        value="{{ $ime->ogrenci_sicil_no }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_telefon" name="ogrenci_telefon"
+                        value="{{ $ime->ogrenci_telefon }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_eposta" name="ogrenci_eposta"
+                        value="{{ $ime->ogrenci_eposta }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_adres" name="ogrenci_adres"
+                        value="{{ $ime->ogrenci_adres }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_il" name="ogrenci_il"
+                        value="{{ $ime->ogrenci_il }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_ilce" name="ogrenci_ilce"
+                        value="{{ $ime->ogrenci_ilce }}">
+
+                    <input type="hidden" class="form-control" id="ogrenci_posta_kodu" name="ogrenci_posta_kodu"
+                        value="{{ $ime->ogrenci_posta_kodu }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma" name="firma"
+                        value="{{ $ime->firma }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_faaliyet_alani" name="firma_faaliyet_alani"
+                        value="{{ $ime->firma_faaliyet_alani }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_adres" name="firma_adres"
+                        value="{{ $ime->firma_adres }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_il" name="firma_il"
+                        value="{{ $ime->firma_il }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_ilce" name="firma_ilce"
+                        value="{{ $ime->firma_ilce }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_posta_kodu" name="firma_posta_kodu"
+                        value="{{ $ime->firma_posta_kodu }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_telefon" name="firma_telefon"
+                        value="{{ $ime->firma_telefon }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_fax" name="firma_fax"
+                        value="{{ $ime->firma_fax }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_eposta" name="firma_eposta"
+                        value="{{ $ime->firma_eposta }}">
+
+
+                    <input type="hidden" class="form-control" id="yil_donem" name="yil_donem"
+                        value="{{ $ime->yil_donem ? $ime->yil_donem : 'Yok' }}">
+
+
+
+                    <input type="hidden" class="form-control" id="baslangic_tarihi" name="baslangic_tarihi"
+                        value="{{ date('d/m/Y', strtotime($ime->baslangic_tarihi)) }}">
+
+
+
+                    <input type="hidden" class="form-control" id="bitis_tarihi" name="bitis_tarihi"
+                        value="{{ date('d/m/Y', strtotime($ime->bitis_tarihi)) }}">
+
+
+                    <input type="hidden" class="form-control" id="gun_sayisi" name="gun_sayisi"
+                        value="{{ $ime->gun_sayisi }}">
+
+
+                    <input type="hidden" class="form-control" id="onay_durumu_text" name="onay_durumu_text"
+                        value="{{ $ime->onay_durumu }}">
+
+
+                    @if ($ogretmen != null)
+                        <input type="hidden" class="form-control" id="ogretmen_ad_soyad" name="ogretmen_ad_soyad"
+                            value="{{ $ogretmen->name . ' ' . $ogretmen->surname }}">
+                    @else
+                        <input type="hidden" class="form-control" id="ogretmen_ad_soyad" name="ogretmen_ad_soyad"
+                            value="Yok">
+                    @endif
+
+
+                    <input type="hidden" class="form-control" id="not_text" name="not_text"
+                        value="{{ $ime->not ? $ime->not : 'Girilmedi' }}">
+
+
+
+                    <input type="hidden" class="form-control" id="kabul_edilen_gun_sayisi_text"
+                        name="kabul_edilen_gun_sayisi_text"
+                        value="{{ $ime->kabul_edilen_gun_sayisi ? $ime->kabul_edilen_gun_sayisi : 'Girilmedi' }}">
+
+
+                    <div class="text-end mb-3">
+                        <button type="submit" class="btn btn-success">PDF Halinde İndir</button>
+                    </div>
+                </form>
                 <form action="{{ route('ogretmen.imepatch', $ime->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')

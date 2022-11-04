@@ -6,6 +6,133 @@
     @if ($staj != null)
         <div class="card">
             <div class="card-body">
+                <form action="{{ route('stajbilgileriindirpost') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_ad_soyad" name="ogrenci_ad_soyad"
+                        value="{{ $staj->name . ' ' . $staj->surname }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_sicil_no" name="ogrenci_sicil_no"
+                        value="{{ $staj->ogrenci_sicil_no }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_telefon" name="ogrenci_telefon"
+                        value="{{ $staj->ogrenci_telefon }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_eposta" name="ogrenci_eposta"
+                        value="{{ $staj->ogrenci_eposta }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_adres" name="ogrenci_adres"
+                        value="{{ $staj->ogrenci_adres }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_il" name="ogrenci_il"
+                        value="{{ $staj->ogrenci_il }}">
+
+
+                    <input type="hidden" class="form-control" id="ogrenci_ilce" name="ogrenci_ilce"
+                        value="{{ $staj->ogrenci_ilce }}">
+
+                    <input type="hidden" class="form-control" id="ogrenci_posta_kodu" name="ogrenci_posta_kodu"
+                        value="{{ $staj->ogrenci_posta_kodu }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma" name="firma"
+                        value="{{ $staj->firma }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_faaliyet_alani" name="firma_faaliyet_alani"
+                        value="{{ $staj->firma_faaliyet_alani }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_adres" name="firma_adres"
+                        value="{{ $staj->firma_adres }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_il" name="firma_il"
+                        value="{{ $staj->firma_il }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_ilce" name="firma_ilce"
+                        value="{{ $staj->firma_ilce }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_posta_kodu" name="firma_posta_kodu"
+                        value="{{ $staj->firma_posta_kodu }}">
+
+
+                    <input type="hidden" class="form-control" id="firma_telefon" name="firma_telefon"
+                        value="{{ $staj->firma_telefon }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_fax" name="firma_fax"
+                        value="{{ $staj->firma_fax }}">
+
+
+
+                    <input type="hidden" class="form-control" id="firma_eposta" name="firma_eposta"
+                        value="{{ $staj->firma_eposta }}">
+
+
+
+                    <input type="hidden" class="form-control" id="staj_tipi" name="staj_tipi"
+                        value="{{ $staj->staj_tipi }}">
+
+
+
+                    <input type="hidden" class="form-control" id="yil_donem" name="yil_donem"
+                        value="{{ $staj->yil_donem }}">
+
+
+
+                    <input type="hidden" class="form-control" id="baslangic_tarihi" name="baslangic_tarihi"
+                        value="{{ date('d/m/Y', strtotime($staj->baslangic_tarihi)) }}">
+
+
+
+                    <input type="hidden" class="form-control" id="bitis_tarihi" name="bitis_tarihi"
+                        value="{{ date('d/m/Y', strtotime($staj->bitis_tarihi)) }}">
+
+
+                    <input type="hidden" class="form-control" id="gun_sayisi" name="gun_sayisi"
+                        value="{{ $staj->gun_sayisi }}">
+
+
+                    <input type="hidden" class="form-control" id="onay_durumu_text" name="onay_durumu_text"
+                        value="{{ $staj->onay_durumu }}">
+
+
+                    @if ($ogretmen != null)
+                        <input type="hidden" class="form-control" id="ogretmen_ad_soyad" name="ogretmen_ad_soyad"
+                            value="{{ $ogretmen->name . ' ' . $ogretmen->surname }}">
+                    @else
+                        <input type="hidden" class="form-control" id="ogretmen_ad_soyad" name="ogretmen_ad_soyad"
+                            value="Yok">
+                    @endif
+
+
+                    <input type="hidden" class="form-control" id="not_text" name="not_text"
+                        value="{{ $staj->not ? $staj->not : 'Girilmedi' }}">
+
+
+
+                    <input type="hidden" class="form-control" id="kabul_edilen_gun_sayisi_text"
+                        name="kabul_edilen_gun_sayisi_text"
+                        value="{{ $staj->kabul_edilen_gun_sayisi ? $staj->kabul_edilen_gun_sayisi : 'Girilmedi' }}">
+
+
+                    <div class="text-end mb-3">
+                        <button type="submit" class="btn btn-success">PDF Halinde İndir</button>
+                    </div>
+                </form>
                 <form action="{{ route('ogrenci.stajpatch', $staj->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
