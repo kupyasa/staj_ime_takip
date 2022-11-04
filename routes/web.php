@@ -184,35 +184,3 @@ Route::group(
     }
 );
 
-Route::group(
-    [
-        'middleware' => ['auth'],
-        'prefix' => 'yonetici'
-    ],
-    function () {
-
-        Route::get('stajlar', [YoneticiController::class, 'stajlarGet'])->name('yonetici.stajlarget');
-        Route::get('staj/{id}', [YoneticiController::class, 'stajGet'])->whereNumber('id')->name('yonetici.stajget');
-        Route::patch('staj/{id}', [YoneticiController::class, 'stajPatch'])->whereNumber('id')->name('yonetici.stajpatch');
-        Route::delete('staj/{id}', [YoneticiController::class, 'stajDelete'])->whereNumber('id')->name('yonetici.stajdelete');
-
-        Route::get('imes', [YoneticiController::class, 'imesGet'])->name('yonetici.imesget');
-        Route::get('ime/{id}', [YoneticiController::class, 'imeGet'])->whereNumber('id')->name('yonetici.imeget');
-        Route::patch('ime/{id}', [YoneticiController::class, 'imePatch'])->whereNumber('id')->name('yonetici.imepatch');
-        Route::delete('ime/{id}', [YoneticiController::class, 'imeDelete'])->whereNumber('id')->name('yonetici.imedelete');
-
-        Route::get('imesecim', [YoneticiController::class, 'imeSecimGet'])->name('yonetici.imesecimget');
-        Route::post('imesecim', [YoneticiController::class, 'imeSecimPost'])->name('yonetici.imesecimpost');
-
-        Route::get('kullaniciekle', [YoneticiController::class, 'kullaniciEkleGet'])->name('yonetici.kullaniciekleget');
-        Route::post('kullaniciekle', [YoneticiController::class, 'kullaniciEklePost'])->name('yonetici.kullanicieklepost');
-
-        Route::get('kullanicilar', [YoneticiController::class, 'kullanicilarGet'])->name('yonetici.kullanicilarget');
-        Route::get('kullanici/{id}', [YoneticiController::class, 'kullaniciGet'])->whereNumber('id')->name('yonetici.kullaniciget');
-        Route::patch('kullanici/{id}', [YoneticiController::class, 'kullaniciPatch'])->whereNumber('id')->name('yonetici.kullanicipatch');
-        Route::delete('kullanici/{id}', [YoneticiController::class, 'kullaniciDelete'])->whereNumber('id')->name('yonetici.kullanicidelete');
-
-        Route::get('kullanicilarekle', [YoneticiController::class, 'kullanicilarEkleGet'])->name('yonetici.kullanicilarekleget');
-        Route::post('kullanicilarekle', [YoneticiController::class, 'kullanicilarEklePost'])->name('yonetici.kullanicilareklepost');
-    }
-);

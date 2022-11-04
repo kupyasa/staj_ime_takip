@@ -152,6 +152,9 @@
                                 <x-jet-dropdown-link href="{{ route('yonetici.imesget') }}">
                                     {{ __('İşletmede Mesleki Eğitimler') }}
                                 </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('yonetici.imesecimget') }}">
+                                    {{ __('İME için Öğrenci Seç') }}
+                                </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('yonetici.kullaniciekleget') }}">
                                     {{ __('Kullanıcı Ekle') }}
                                 </x-jet-dropdown-link>
@@ -168,6 +171,9 @@
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('yonetici.imesget') }}">
                                     {{ __('İşletmede Mesleki Eğitimler') }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{ route('yonetici.imesecimget') }}">
+                                    {{ __('İME için Öğrenci Seç') }}
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('yonetici.kullaniciekleget') }}">
                                     {{ __('Kullanıcı Ekle') }}
@@ -287,6 +293,9 @@
                     <x-jet-responsive-nav-link href="{{ route('yonetici.imesget') }}" :active="request()->routeIs('yonetici.imesget')">
                         {{ __('İşletmede Mesleki Eğitimler') }}
                     </x-jet-responsive-nav-link>
+                    <x-jet-responsive-nav-link href="{{ route('yonetici.imesecimget') }}" :active="request()->routeIs('yonetici.imesecimget')">
+                        {{ __('İME için Öğrenci Seç') }}
+                    </x-jet-responsive-nav-link>
                     <x-jet-responsive-nav-link href="{{ route('yonetici.kullaniciekleget') }}" :active="request()->routeIs('yonetici.kullaniciekleget')">
                         {{ __('Kullanıcı Ekle') }}
                     </x-jet-responsive-nav-link>
@@ -303,6 +312,9 @@
                     </x-jet-responsive-nav-link>
                     <x-jet-responsive-nav-link href="{{ route('yonetici.imesget') }}" :active="request()->routeIs('yonetici.imesget')">
                         {{ __('İşletmede Mesleki Eğitimler') }}
+                    </x-jet-responsive-nav-link>
+                    <x-jet-responsive-nav-link href="{{ route('yonetici.imesecimget') }}" :active="request()->routeIs('yonetici.imesecimget')">
+                        {{ __('İME için Öğrenci Seç') }}
                     </x-jet-responsive-nav-link>
                     <x-jet-responsive-nav-link href="{{ route('yonetici.kullaniciekleget') }}" :active="request()->routeIs('yonetici.kullaniciekleget')">
                         {{ __('Kullanıcı Ekle') }}
