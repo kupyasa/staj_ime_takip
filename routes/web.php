@@ -52,8 +52,14 @@ Route::get('/public/ime/{filepath}', function ($filepath) {
 Route::post('/stajbilgileripdf',[StajImePdfController::class, 'stajBilgileriIndirPost'])->middleware('auth')->name('stajbilgileriindirpost');
 Route::post('/imebilgileripdf',[StajImePdfController::class, 'imeBilgileriIndirPost'])->middleware('auth')->name('imebilgileriindirpost');
 
-Route::patch('/stajdosyalarinisil/{id}',[DeleteFileController::class, 'stajDosyalariniSil'])->whereNumber('id')->middleware('auth')->name('stajdosyalarinisil');
-Route::patch('/imedosyalarinisil/{id}',[DeleteFileController::class, 'imeDosyalariniSil'])->whereNumber('id')->middleware('auth')->name('imedosyalarinisil');
+Route::patch('/stajdosyalarinisil/{id}',[DeleteFileController::class, 'stajDosyalariniSil'])->whereNumber('id')->middleware('isKomisyon')->name('stajdosyalarinisil');
+Route::patch('/imedosyalarinisil/{id}',[DeleteFileController::class, 'imeDosyalariniSil'])->whereNumber('id')->middleware('isKomisyon')->name('imedosyalarinisil');
+
+Route::patch('/stajdosyalarinisil/{id}',[DeleteFileController::class, 'stajDosyalariniSil'])->whereNumber('id')->middleware('isYonetici')->name('stajdosyalarinisil');
+Route::patch('/imedosyalarinisil/{id}',[DeleteFileController::class, 'imeDosyalariniSil'])->whereNumber('id')->middleware('isYonetici')->name('imedosyalarinisil');
+
+Route::patch('/stajdosyalarinisil/{id}',[DeleteFileController::class, 'stajDosyalariniSil'])->whereNumber('id')->middleware('isSuperYonetici')->name('stajdosyalarinisil');
+Route::patch('/imedosyalarinisil/{id}',[DeleteFileController::class, 'imeDosyalariniSil'])->whereNumber('id')->middleware('isSuperYonetici')->name('imedosyalarinisil');
 
 Route::group(
     [
