@@ -38,7 +38,7 @@
                 <div class="mb-3">
                     <label for="fakulte" class="form-label">Fakülte</label>
                     <input type="text" class="form-control" id="fakulte" name="fakulte"
-                        value="{{ $kullanici->fakulte ? $kullanici->bolum : '' }}" required>
+                        value="{{ $kullanici->fakulte ? $kullanici->fakulte : '' }}" required>
                 </div>
                 <div class="mb-3">
                     <label for="bolum" class="form-label">Bölüm</label>
