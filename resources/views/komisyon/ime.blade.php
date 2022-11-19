@@ -380,7 +380,7 @@
                         <button type="submit" class="btn btn-primary">İME'yi Güncelle</button>
                     </div>
                 </form>
-                <form class="text-end" action="{{ route('imedosyalarinisil', $staj->id) }}" method="POST">
+                <form class="text-end" action="{{ route('imedosyalarinisil', $ime->id) }}" method="POST">
                     @method('PATCH')
                     @csrf
                     <button class="btn btn-danger my-2"><i class="bi bi-trash"></i>İME'ye ait Dosyaları Sil</button>
